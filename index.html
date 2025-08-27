@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinFamily - ניהול פיננסי חכם למשפחה</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <i class="fas fa-chart-line"></i>
+                    <span>FinFamily</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home">בית</a></li>
+                    <li><a href="#features">תכונות</a></li>
+                    <li><a href="#calculator">מחשבונים</a></li>
+                    <li><a href="#pricing">מחירים</a></li>
+                    <li><a href="#contact">צור קשר</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary">התחבר</button>
+                    <button class="btn btn-primary">התחל חינם</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    ניהול פיננסי חכם
+                    <span class="highlight">למשפחה שלך</span>
+                </h1>
+                <p class="hero-description">
+                    השג שליטה מלאה על הכספים שלך עם כלי ניהול מתקדמים, מעקב תזרים מזומנים, 
+                    ניהול נכסים והתחייבויות, ומחשבונים פיננסיים חכמים
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary btn-large">
+                        <i class="fas fa-rocket"></i>
+                        התחל עכשיו - חינם
+                    </button>
+                    <button class="btn btn-outline btn-large">
+                        <i class="fas fa-play"></i>
+                        צפה בסרטון הדגמה
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">50,000+</span>
+                        <span class="stat-label">משפחות</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">₪2.5M</span>
+                        <span class="stat-label">חסכונות</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">4.8</span>
+                        <span class="stat-label">דירוג</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="app-mockup">
+                    <div class="mockup-screen">
+                        <div class="mockup-header">
+                            <div class="mockup-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="mockup-content">
+                            <div class="dashboard-preview">
+                                <div class="chart-container">
+                                    <canvas id="previewChart"></canvas>
+                                </div>
+                                <div class="stats-grid">
+                                    <div class="stat-card">
+                                        <i class="fas fa-wallet"></i>
+                                        <span>תזרים מזומנים</span>
+                                    </div>
+                                    <div class="stat-card">
+                                        <i class="fas fa-piggy-bank"></i>
+                                        <span>חסכונות</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>כל מה שצריך לניהול פיננסי מושלם</h2>
+                <p>כלים מתקדמים שיעזרו לך לקחת שליטה על הכספים שלך</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3>ניהול נכסים והתחייבויות</h3>
+                    <p>מעקב מלא אחר כל הנכסים והחובות שלך עם דשבורד ויזואלי ברור</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>תזרים מזומנים</h3>
+                    <p>מעקב יומי, שבועי וחודשי אחר הכנסות והוצאות עם תחזיות חכמות</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                    <h3>הקצאת חסכון</h3>
+                    <p>תכנון חכם של החסכונות עם המלצות מותאמות אישית</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>מחשבונים פיננסיים</h3>
+                    <p>ריבית דריבית, משכנתא, השקעות ועוד מחשבונים מתקדמים</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>התראות חכמות</h3>
+                    <p>קבל התראות על תשלומים, יעדי חסכון וזיהוי חריגות</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>אבטחה מתקדמת</h3>
+                    <p>הנתונים שלך מוגנים עם הצפנה מתקדמת וגיבוי אוטומטי</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calculator" class="calculator">
+        <div class="container">
+            <div class="section-header">
+                <h2>מחשבונים פיננסיים</h2>
+                <p>כלים לחישובים מדויקים לתכנון הפיננסי שלך</p>
+            </div>
+            <div class="calculator-tabs">
+                <button class="tab-btn active" data-tab="compound">ריבית דריבית</button>
+                <button class="tab-btn" data-tab="mortgage">משכנתא</button>
+                <button class="tab-btn" data-tab="investment">השקעות</button>
+            </div>
+            <div class="calculator-content">
+                <!-- Compound Interest Calculator -->
+                <div class="calc-panel active" id="compound">
+                    <div class="calc-form">
+                        <div class="form-group">
+                            <label>סכום התחלתי</label>
+                            <input type="number" id="principal" placeholder="10000" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label>תשלום חודשי</label>
+                            <input type="number" id="monthly" placeholder="1000" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label>ריבית שנתית (%)</label>
+                            <input type="number" id="rate" placeholder="5" min="0" max="100" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label>תקופה (שנים)</label>
+                            <input type="number" id="years" placeholder="10" min="1" max="50">
+                        </div>
+                        <button class="btn btn-primary" onclick="calculateCompound()">חשב</button>
+                    </div>
+                    <div class="calc-result">
+                        <div class="result-card">
+                            <h3>תוצאות החישוב</h3>
+                            <div class="result-item">
+                                <span>סכום סופי:</span>
+                                <span id="finalAmount">₪0</span>
+                            </div>
+                            <div class="result-item">
+                                <span>סך הכל הפקדות:</span>
+                                <span id="totalDeposits">₪0</span>
+                            </div>
+                            <div class="result-item">
+                                <span>סך הכל ריבית:</span>
+                                <span id="totalInterest">₪0</span>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="compoundChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>תוכניות מחיר</h2>
+                <p>בחר את התוכנית המתאימה למשפחה שלך</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>חינמי</h3>
+                        <div class="price">
+                            <span class="currency">₪</span>
+                            <span class="amount">0</span>
+                            <span class="period">/חודש</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> עד 2 חשבונות בנק</li>
+                        <li><i class="fas fa-check"></i> מעקב בסיסי</li>
+                        <li><i class="fas fa-check"></i> מחשבונים בסיסיים</li>
+                        <li><i class="fas fa-check"></i> תמיכה בדוא"ל</li>
+                    </ul>
+                    <button class="btn btn-outline">התחל חינם</button>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">פופולרי</div>
+                    <div class="pricing-header">
+                        <h3>משפחה</h3>
+                        <div class="price">
+                            <span class="currency">₪</span>
+                            <span class="amount">29</span>
+                            <span class="period">/חודש</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> חשבונות בנק ללא הגבלה</li>
+                        <li><i class="fas fa-check"></i> כל התכונות המתקדמות</li>
+                        <li><i class="fas fa-check"></i> מחשבונים מתקדמים</li>
+                        <li><i class="fas fa-check"></i> התראות חכמות</li>
+                        <li><i class="fas fa-check"></i> תמיכה טלפונית</li>
+                        <li><i class="fas fa-check"></i> גיבוי אוטומטי</li>
+                    </ul>
+                    <button class="btn btn-primary">התחל עכשיו</button>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>מקצועי</h3>
+                        <div class="price">
+                            <span class="currency">₪</span>
+                            <span class="amount">59</span>
+                            <span class="period">/חודש</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> כל התכונות של משפחה</li>
+                        <li><i class="fas fa-check"></i> ייעוץ פיננסי אישי</li>
+                        <li><i class="fas fa-check"></i> דוחות מתקדמים</li>
+                        <li><i class="fas fa-check"></i> API גישה</li>
+                        <li><i class="fas fa-check"></i> תמיכה VIP</li>
+                    </ul>
+                    <button class="btn btn-outline">צור קשר</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>צור קשר</h2>
+                    <p>יש לך שאלות? אנחנו כאן לעזור!</p>
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <span>support@finfamily.co.il</span>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-phone"></i>
+                            <span>03-1234567</span>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>תל אביב, ישראל</span>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="שם מלא" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="דוא"ל" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="טלפון">
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="הודעה" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">שלח הודעה</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <i class="fas fa-chart-line"></i>
+                        <span>FinFamily</span>
+                    </div>
+                    <p>ניהול פיננסי חכם למשפחה המודרנית</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>מוצר</h4>
+                    <ul>
+                        <li><a href="#features">תכונות</a></li>
+                        <li><a href="#calculator">מחשבונים</a></li>
+                        <li><a href="#pricing">מחירים</a></li>
+                        <li><a href="#">ביטחון</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>תמיכה</h4>
+                    <ul>
+                        <li><a href="#">מרכז עזרה</a></li>
+                        <li><a href="#">מדריכים</a></li>
+                        <li><a href="#contact">צור קשר</a></li>
+                        <li><a href="#">שאלות נפוצות</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>חברה</h4>
+                    <ul>
+                        <li><a href="#">אודות</a></li>
+                        <li><a href="#">קריירה</a></li>
+                        <li><a href="#">בלוג</a></li>
+                        <li><a href="#">תנאי שימוש</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 FinFamily. כל הזכויות שמורות.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
