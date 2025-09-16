@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>אקדמיית שוק ההון - קורס דיגיטלי להשקעות</title>
+    <title>קורס דיגיטלי פרימיום להשקעות</title>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1c6fe8;
-            --primary-dark: #0f4bbd;
-            --accent: #f7b733;
-            --text-dark: #142033;
-            --text-muted: #637089;
+            --primary: #0b1f3a;
+            --primary-soft: #1f4b99;
+            --light: #f3f6fb;
+            --muted: #6f7d95;
+            --border: rgba(11, 31, 58, 0.1);
             --surface: #ffffff;
-            --background: #f4f7fb;
         }
 
         * {
@@ -23,738 +22,294 @@
         body {
             margin: 0;
             font-family: 'Heebo', sans-serif;
-            background: var(--background);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        img {
-            max-width: 100%;
-            display: block;
-        }
-
-        header {
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(16px);
-            position: sticky;
-            top: 0;
-            z-index: 20;
-            box-shadow: 0 12px 32px rgba(20, 32, 51, 0.08);
-        }
-
-        .container {
-            width: min(1100px, 92%);
-            margin: 0 auto;
-        }
-
-        .nav-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 28px;
-            padding: 18px 0;
-        }
-
-        .logo {
-            font-weight: 700;
-            font-size: 1.2rem;
+            background: var(--light);
             color: var(--primary);
             display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo::before {
-            content: "📈";
-            font-size: 1.5rem;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 22px;
-            font-weight: 500;
-            color: var(--text-muted);
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-cta {
-            padding: 12px 22px;
-            border-radius: 999px;
-            background: var(--primary);
-            color: #fff;
-            font-weight: 600;
-            transition: background 0.3s ease, transform 0.3s ease;
-        }
-
-        .nav-cta:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
+            justify-content: center;
+            padding: 48px 16px 64px;
         }
 
         main {
-            overflow: hidden;
-        }
-
-        .hero {
-            padding: 120px 0 90px;
-            background: linear-gradient(135deg, rgba(28, 111, 232, 0.08) 0%, rgba(247, 183, 51, 0.05) 100%);
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 56px;
-            align-items: center;
-        }
-
-        .hero-title {
-            font-size: clamp(2.2rem, 4vw, 3rem);
-            line-height: 1.2;
-            margin-bottom: 16px;
-        }
-
-        .hero-title span {
-            color: var(--primary);
-        }
-
-        .hero-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 28px;
-        }
-
-        .hero-highlights {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 16px;
-            margin-bottom: 32px;
-        }
-
-        .highlight-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 18px;
-            padding: 16px;
-            box-shadow: 0 12px 28px rgba(20, 32, 51, 0.08);
-            border: 1px solid rgba(28, 111, 232, 0.08);
-        }
-
-        .highlight-card strong {
-            display: block;
-            font-size: 1.05rem;
-            margin-bottom: 6px;
-            color: var(--primary);
-        }
-
-        .hero-cta {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-weight: 600;
-            border-radius: 999px;
-            padding: 14px 28px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: #fff;
-            box-shadow: 0 18px 30px rgba(28, 111, 232, 0.26);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            background: var(--primary-dark);
-        }
-
-        .btn-secondary {
-            background: rgba(28, 111, 232, 0.12);
-            color: var(--primary);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(28, 111, 232, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .course-preview {
+            width: min(880px, 100%);
             background: var(--surface);
-            border-radius: 28px;
-            padding: 32px;
-            box-shadow: 0 24px 48px rgba(20, 32, 51, 0.12);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .course-preview::after {
-            content: "";
-            position: absolute;
-            inset: -80px -120px auto auto;
-            width: 260px;
-            height: 260px;
-            background: radial-gradient(circle at center, rgba(28, 111, 232, 0.25) 0%, rgba(28, 111, 232, 0) 70%);
-            pointer-events: none;
-        }
-
-        .course-preview-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 24px;
-        }
-
-        .course-tag {
-            background: rgba(247, 183, 51, 0.14);
-            color: #b57400;
-            padding: 6px 14px;
-            border-radius: 999px;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .course-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 18px;
-            margin-bottom: 28px;
-        }
-
-        .stat-card {
-            background: rgba(28, 111, 232, 0.08);
-            border-radius: 16px;
-            padding: 16px;
-        }
-
-        .stat-card span {
-            display: block;
-        }
-
-        .stat-card .stat-value {
-            font-weight: 700;
-            font-size: 1.3rem;
-            color: var(--primary);
-        }
-
-        .module-list {
-            display: grid;
-            gap: 12px;
-        }
-
-        .module-item {
-            padding: 14px 18px;
-            border-radius: 14px;
-            background: rgba(20, 32, 51, 0.04);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 500;
-        }
-
-        .section {
-            padding: 90px 0;
-        }
-
-        .section-header {
+            border-radius: 32px;
+            padding: clamp(40px, 6vw, 72px);
+            box-shadow: 0 40px 80px rgba(11, 31, 58, 0.08);
             text-align: center;
-            margin-bottom: 48px;
-        }
-
-        .section-header h2 {
-            font-size: clamp(2rem, 3.3vw, 2.6rem);
-            margin-bottom: 12px;
-        }
-
-        .section-header p {
-            color: var(--text-muted);
-            max-width: 580px;
-            margin: 0 auto;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 24px;
-        }
-
-        .feature-card {
-            background: var(--surface);
-            border-radius: 22px;
-            padding: 26px;
-            box-shadow: 0 18px 36px rgba(20, 32, 51, 0.1);
-            border: 1px solid rgba(20, 32, 51, 0.04);
-        }
-
-        .feature-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 16px;
-            background: rgba(28, 111, 232, 0.12);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            margin-bottom: 18px;
-        }
-
-        .syllabus-wrapper {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
-            align-items: start;
-        }
-
-        .syllabus-summary {
-            background: var(--surface);
-            border-radius: 22px;
-            padding: 30px;
-            box-shadow: 0 18px 38px rgba(20, 32, 51, 0.1);
-        }
-
-        .syllabus-summary ul {
-            padding: 0;
-            margin: 0;
-            list-style: none;
-            display: grid;
-            gap: 12px;
-            color: var(--text-muted);
-        }
-
-        .syllabus-summary li::before {
-            content: "•";
-            color: var(--primary);
-            margin-left: 8px;
-        }
-
-        .syllabus-steps {
-            display: grid;
-            gap: 18px;
-        }
-
-        .step {
-            background: rgba(28, 111, 232, 0.1);
-            border-radius: 18px;
-            padding: 22px;
-        }
-
-        .step-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: #fff;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .testimonials {
-            background: linear-gradient(135deg, rgba(28, 111, 232, 0.12) 0%, rgba(20, 32, 51, 0.08) 100%);
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 24px;
-        }
-
-        .testimonial {
-            background: rgba(255, 255, 255, 0.92);
-            border-radius: 22px;
-            padding: 24px;
-            box-shadow: 0 18px 32px rgba(20, 32, 51, 0.12);
-        }
-
-        .testimonial strong {
-            display: block;
-            margin-top: 16px;
-            color: var(--primary);
-        }
-
-        .signup {
             position: relative;
-            background: linear-gradient(125deg, #1c6fe8 0%, #0f4bbd 100%);
-            color: #fff;
             overflow: hidden;
         }
 
-        .signup::before {
+        main::before,
+        main::after {
             content: "";
             position: absolute;
-            inset: auto -120px -140px auto;
-            width: 420px;
-            height: 420px;
-            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 65%);
-            pointer-events: none;
+            border-radius: 999px;
+            background: linear-gradient(135deg, rgba(31, 75, 153, 0.15), rgba(11, 31, 58, 0.05));
+            filter: blur(0.5px);
+            z-index: 0;
         }
 
-        .signup-content {
+        main::before {
+            width: 280px;
+            height: 280px;
+            top: -120px;
+            inset-inline-start: -120px;
+        }
+
+        main::after {
+            width: 220px;
+            height: 220px;
+            bottom: -100px;
+            inset-inline-end: -80px;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            align-items: center;
+            gap: clamp(32px, 4vw, 48px);
         }
 
-        .signup h2 {
-            font-size: clamp(2.2rem, 3.5vw, 2.8rem);
-            margin-bottom: 18px;
-        }
-
-        .signup p {
-            margin-bottom: 32px;
-            color: rgba(255, 255, 255, 0.82);
-        }
-
-        .signup-form {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 32px;
-            box-shadow: 0 24px 48px rgba(13, 27, 44, 0.25);
-            backdrop-filter: blur(6px);
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 18px;
-        }
-
-        label {
-            font-weight: 600;
+        .brand {
             font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--primary-soft);
+            margin: 0 auto;
+            padding: 8px 20px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        input {
-            border: none;
-            border-radius: 14px;
-            padding: 14px 16px;
-            font-size: 1rem;
-            font-family: inherit;
-            background: rgba(255, 255, 255, 0.92);
-            color: var(--text-dark);
+        .brand::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary-soft);
         }
 
-        input:focus {
-            outline: 2px solid rgba(255, 255, 255, 0.6);
-            outline-offset: 2px;
+        h1 {
+            font-size: clamp(2.1rem, 5vw, 3.1rem);
+            line-height: 1.2;
+            margin: 0;
         }
 
-        .signup button {
-            width: 100%;
-            border-radius: 14px;
-            border: none;
-            padding: 16px;
+        .lead {
+            font-size: clamp(1.05rem, 2.6vw, 1.3rem);
+            color: var(--muted);
+            margin: 0 auto;
+            max-width: 28rem;
+        }
+
+        .cta-primary {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--primary-soft), #0b2f64);
+            color: #fff;
             font-size: 1.05rem;
-            font-weight: 700;
-            background: var(--accent);
-            color: #142033;
-            cursor: pointer;
+            font-weight: 600;
+            padding: 18px 48px;
+            border-radius: 999px;
+            box-shadow: 0 20px 30px rgba(31, 75, 153, 0.25);
+            text-decoration: none;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .signup button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 18px 28px rgba(20, 32, 51, 0.25);
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 26px 40px rgba(11, 31, 58, 0.25);
         }
 
-        footer {
-            background: #0e1726;
-            color: rgba(255, 255, 255, 0.75);
-            padding: 36px 0;
+        .cta-primary span {
+            font-size: 1.2rem;
         }
 
-        footer .container {
-            display: flex;
-            flex-direction: column;
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to left, transparent, var(--border), transparent);
+        }
+
+        .features {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        }
+
+        .feature {
+            background: rgba(243, 246, 251, 0.5);
+            border: 1px solid rgba(11, 31, 58, 0.07);
+            border-radius: 24px;
+            padding: 24px;
+            display: grid;
             gap: 12px;
-            text-align: center;
+            place-items: center;
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(31, 75, 153, 0.1);
+            display: grid;
+            place-items: center;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin: 0;
+        }
+
+        .feature-text {
+            margin: 0;
+            color: var(--muted);
             font-size: 0.95rem;
         }
 
-        footer a {
-            color: rgba(255, 255, 255, 0.85);
+        .form-card {
+            background: rgba(243, 246, 251, 0.65);
+            border-radius: 28px;
+            padding: clamp(28px, 4vw, 40px);
+            border: 1px solid rgba(11, 31, 58, 0.08);
+            display: grid;
+            gap: 24px;
         }
 
-        @media (max-width: 980px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-            }
-
-            header {
-                position: static;
-            }
+        .form-card h2 {
+            margin: 0;
+            font-size: 1.6rem;
         }
 
-        @media (max-width: 780px) {
-            .nav-links {
-                display: none;
-            }
-
-            .nav-container {
-                padding: 16px 0;
-            }
-
-            .section {
-                padding: 72px 0;
-            }
+        form {
+            display: grid;
+            gap: 18px;
         }
 
-        @media (max-width: 540px) {
-            .hero {
-                padding: 90px 0 60px;
+        label {
+            display: none;
+        }
+
+        input {
+            width: 100%;
+            padding: 16px 18px;
+            border-radius: 16px;
+            border: 1px solid rgba(11, 31, 58, 0.18);
+            background: #fff;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary-soft);
+            box-shadow: 0 0 0 4px rgba(31, 75, 153, 0.15);
+        }
+
+        .form-button {
+            border: none;
+            cursor: pointer;
+        }
+
+        footer {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 32px 12px 48px;
             }
 
-            .hero-cta {
-                flex-direction: column;
-                align-items: stretch;
+            main {
+                border-radius: 24px;
             }
 
-            .course-preview {
-                padding: 24px;
-            }
-
-            .signup-content {
-                gap: 24px;
+            .cta-primary {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container nav-container">
-            <div class="logo">אקדמיית שוק ההון</div>
-            <nav class="nav-links">
-                <a href="#benefits">למה הקורס</a>
-                <a href="#syllabus">מה נלמד</a>
-                <a href="#testimonials">בוגרים ממליצים</a>
-                <a href="#signup">הרשמה</a>
-            </nav>
-            <a class="nav-cta" href="#signup">להירשם למחזור הקרוב</a>
-        </div>
-    </header>
-
     <main>
-        <section class="hero">
-            <div class="container hero-grid">
-                <div>
-                    <h1 class="hero-title">קורס דיגיטלי מקיף שיקח אותך מ<span>מתעניין למשקיע בטוח</span></h1>
-                    <p class="hero-subtitle">גלה כיצד לבנות תיק השקעות מניב, לזהות הזדמנויות בשוק ההון ולנהל סיכונים בשיטה מסודרת – בקצב שלך ומכל מקום.</p>
-
-                    <div class="hero-highlights">
-                        <div class="highlight-card">
-                            <strong>60+ שיעורים</strong>
-                            תוכן וידאו מעמיק, תרגולים ודוגמאות מהשוק האמיתי
-                        </div>
-                        <div class="highlight-card">
-                            <strong>ליווי מקצועי</strong>
-                            מפגשי Q&A שבועיים וקבוצת תלמידים סגורה לתמיכה מלאה
-                        </div>
-                        <div class="highlight-card">
-                            <strong>תוצאות מוכחות</strong>
-                            מעל 3,500 בוגרים שכבר מנהלים השקעות בביטחון ובשיטתיות
-                        </div>
-                    </div>
-
-                    <div class="hero-cta">
-                        <a class="btn btn-primary" href="#signup">אני רוצה להצטרף</a>
-                        <a class="btn btn-secondary" href="#syllabus">צפה בתוכנית הקורס</a>
-                    </div>
-                </div>
-
-                <div class="course-preview">
-                    <div class="course-preview-header">
-                        <div>
-                            <h3 style="margin:0; font-size:1.3rem;">תצוגה מקדימה של הקורס</h3>
-                            <small style="color:var(--text-muted);">גלה מה מחכה לך כבר בשיעורים הראשונים</small>
-                        </div>
-                        <span class="course-tag">התחייבות להחזר כספי</span>
-                    </div>
-
-                    <div class="course-stats">
-                        <div class="stat-card">
-                            <span class="stat-value">12</span>
-                            <span>מודולים מעשיים</span>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-value">24/7</span>
-                            <span>גישה מלאה לתכנים</span>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-value">6</span>
-                            <span>תבניות להשקעה</span>
-                        </div>
-                    </div>
-
-                    <div class="module-list">
-                        <div class="module-item">
-                            יסודות שוק ההון
-                            <span>✔</span>
-                        </div>
-                        <div class="module-item">
-                            ניתוח טכני ומגמות
-                            <span>✔</span>
-                        </div>
-                        <div class="module-item">
-                            בניית תיק השקעות מגוון
-                            <span>✔</span>
-                        </div>
-                        <div class="module-item">
-                            ניהול סיכונים ותכנון מס
-                            <span>✔</span>
-                        </div>
-                    </div>
-                </div>
+        <div class="content">
+            <div class="hero">
+                <span class="brand">אקדמיית שוק ההון</span>
+                <h1>קורס דיגיטלי פרימיום להשקעות חכמות</h1>
+                <p class="lead">גלו את המסלול המהיר להצלחה פיננסית עם תוכנית מקיפה, הדרכות חיות וכלים מעשיים שתוכלו ליישם מיידית.</p>
+                <a class="cta-primary" href="#signup">
+                    להבטיח מקום בקורס
+                    <span aria-hidden="true">→</span>
+                </a>
             </div>
-        </section>
 
-        <section id="benefits" class="section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>למה לבחור בקורס הדיגיטלי של אקדמיית שוק ההון?</h2>
-                    <p>הקורס נבנה עבור משקיעים מתחילים ומנוסים כאחד ומעניק כלים פרקטיים ליצירת החלטות נכונות בשוק תנודתי.</p>
-                </div>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">🎯</div>
-                        <h3>שיטה בדוקה</h3>
-                        <p>מסלול לימוד מדורג שמתחיל מהבסיס ומלווה אותך עד ליישום עצמי עם מדדים ברורים להתקדמות.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🧠</div>
-                        <h3>למידה חווייתית</h3>
-                        <p>תרגולים אינטראקטיביים, סימולציות מסחר ומקרי בוחן אמיתיים שיחזקו את הביטחון שלך.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🤝</div>
-                        <h3>קהילה תומכת</h3>
-                        <p>גישה לקבוצת בוגרים פעילה, פידבק אישי ממנטורים ומענה על כל שאלה בזמן אמת.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🚀</div>
-                        <h3>מוכנים לפעולה</h3>
-                        <p>שילוב של כלים, תבניות וקבצי עבודה שיעזרו לך ליישם כבר במהלך הקורס ולראות תוצאות מהירות.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+            <div class="divider" aria-hidden="true"></div>
 
-        <section id="syllabus" class="section" style="padding-top: 0;">
-            <div class="container">
-                <div class="section-header">
-                    <h2>מה מחכה לך בתוכנית הלימוד</h2>
-                    <p>12 מודולים מהודקים ומקצועיים שיעשו סדר בעולם ההשקעות ויתנו לך מסלול ברור להצלחה.</p>
-                </div>
-                <div class="syllabus-wrapper">
-                    <div class="syllabus-summary">
-                        <h3 style="margin-top:0;">תוצאות שתשיג:</h3>
-                        <ul>
-                            <li>בניית אסטרטגיה אישית להשקעה לטווח קצר וארוך</li>
-                            <li>הבנת דוחות כספיים וניתוח חברות ציבוריות</li>
-                            <li>שימוש בכלי ניתוח טכני לקבלת החלטות חכמות</li>
-                            <li>ניהול סיכונים ויצירת תכנית יציאה מבוססת נתונים</li>
-                        </ul>
+            <section class="features" aria-label="מאפייני הקורס">
+                <article class="feature">
+                    <div class="feature-icon" aria-hidden="true">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="14" cy="14" r="12" stroke="#1f4b99" stroke-width="1.5"/>
+                            <path d="M14 7V21" stroke="#1f4b99" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M7 14H21" stroke="#1f4b99" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
                     </div>
-                    <div class="syllabus-steps">
-                        <div class="step">
-                            <div class="step-number">01</div>
-                            <h4>היכרות עם השוק וכללי המשחק</h4>
-                            <p>הבנת המונחים המרכזיים, זירות המסחר והגופים הרגולטוריים. שיטות לבחירת ברוקר ולהתנהלות נכונה כמשקיע.</p>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">02</div>
-                            <h4>ניתוח טכני ומיפוי מגמות</h4>
-                            <p>קריאת גרפים, זיהוי תבניות, שימוש באינדיקטורים מתקדמים והגדרת נקודות כניסה ויציאה.</p>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">03</div>
-                            <h4>כלים לניהול תיק השקעות</h4>
-                            <p>אסטרטגיות פיזור, ניהול סיכונים, התאמה לפרופיל משקיע והגנה מפני ירידות חדות.</p>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">04</div>
-                            <h4>מיסוי, פסיכולוגיה ומוכנות לשטח</h4>
-                            <p>התנהלות מול רשויות המס, ניהול רגשי של המסחר והכנה לתוכנית פעולה בתנאי שוק משתנים.</p>
-                        </div>
+                    <h3 class="feature-title">ידע מעשי ומדויק</h3>
+                    <p class="feature-text">יחידות קצרות וממוקדות שמובילות לפעולה בשוק ההון.</p>
+                </article>
+                <article class="feature">
+                    <div class="feature-icon" aria-hidden="true">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="6" y="5" width="16" height="18" rx="3" stroke="#1f4b99" stroke-width="1.5"/>
+                            <path d="M10 4V8" stroke="#1f4b99" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M18 4V8" stroke="#1f4b99" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M10 14H18" stroke="#1f4b99" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
                     </div>
-                </div>
-            </div>
-        </section>
+                    <h3 class="feature-title">קצב גמיש</h3>
+                    <p class="feature-text">תוכן זמין 24/7 עם עדכונים שוטפים והתאמה לזמן שלכם.</p>
+                </article>
+                <article class="feature">
+                    <div class="feature-icon" aria-hidden="true">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23 10C23 16 14 23 14 23C14 23 5 16 5 10C5 7.23858 7.23858 5 10 5C11.8485 5 13.4541 5.96277 14 7.37565C14.5459 5.96277 16.1515 5 18 5C20.7614 5 23 7.23858 23 10Z" stroke="#1f4b99" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">קהילה ותמיכה</h3>
+                    <p class="feature-text">מפגשי מנטורים שבועיים וקבוצת למידה אינטימית.</p>
+                </article>
+            </section>
 
-        <section id="testimonials" class="section testimonials">
-            <div class="container">
-                <div class="section-header">
-                    <h2>מה אומרים הבוגרים שלנו?</h2>
-                    <p>אלפי תלמידים כבר השקיעו בעצמם ובנו חוסן פיננסי. הנה כמה מההצלחות שלהם.</p>
-                </div>
-                <div class="testimonials-grid">
-                    <div class="testimonial">
-                        "הקורס נתן לי ביטחון לבצע פעולות ראשונות בבורסה. היום אני מנהלת תיק השקעות משפחתי ויודעת בדיוק למה אני בוחרת כל נכס."
-                        <strong>עדי, בוגרת מחזור 14</strong>
-                    </div>
-                    <div class="testimonial">
-                        "מבנה השיעורים והתרגולים הפכו את התהליך לברור ופשוט. התמיכה במנטורים עזרה לי לחדד את האסטרטגיה האישית שלי."
-                        <strong>דניאל, מנהל מוצר</strong>
-                    </div>
-                    <div class="testimonial">
-                        "לאחר חצי שנה של יישום האסטרטגיות שלמדתי הצלחתי להגדיל את התיק שלי ב-18% ולשמור על שקט נפשי גם בתקופות תנודתיות."
-                        <strong>אבירם, יזם</strong>
-                    </div>
-                </div>
-            </div>
-        </section>
+            <div class="divider" aria-hidden="true"></div>
 
-        <section id="signup" class="section signup">
-            <div class="container signup-content">
-                <div>
-                    <h2>הצטרפו למחזור הקרוב וקבלו גישה מלאה כבר היום</h2>
-                    <p>השאירו פרטים ונציג אקדמיית שוק ההון יחזור אליכם עם כל המידע על הרשמה, מלגות והטבות בלעדיות למצטרפים החדשים.</p>
-                    <ul style="padding:0; margin:0; list-style:none; display:grid; gap:12px; font-weight:500;">
-                        <li style="display:flex; align-items:center; gap:10px;"><span style="display:inline-flex; width:26px; height:26px; border-radius:50%; background:rgba(255,255,255,0.2); align-items:center; justify-content:center; font-weight:700;">✓</span>גישה לכל השיעורים ולחומרי העזר ללא הגבלת זמן</li>
-                        <li style="display:flex; align-items:center; gap:10px;"><span style="display:inline-flex; width:26px; height:26px; border-radius:50%; background:rgba(255,255,255,0.2); align-items:center; justify-content:center; font-weight:700;">✓</span>הצטרפות לקהילה דיגיטלית עם תמיכה מקצועית</li>
-                        <li style="display:flex; align-items:center; gap:10px;"><span style="display:inline-flex; width:26px; height:26px; border-radius:50%; background:rgba(255,255,255,0.2); align-items:center; justify-content:center; font-weight:700;">✓</span>בונוס: קורס מיני על בניית הכנסה פסיבית משווקים פיננסיים</li>
-                    </ul>
-                </div>
-                <form class="signup-form">
-                    <div class="form-group">
-                        <label for="name">שם מלא</label>
-                        <input id="name" type="text" name="name" placeholder="הקלד/י את שמך" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">כתובת אימייל</label>
-                        <input id="email" type="email" name="email" placeholder="name@example.com" required>
-                    </div>
-                    <button type="submit">שלחו לי פרטים נוספים</button>
+            <section id="signup" class="form-card" aria-label="טופס הרשמה">
+                <h2>השאירו פרטים ונחזור אליכם עם כל הפרטים</h2>
+                <form>
+                    <label for="name">שם מלא</label>
+                    <input id="name" type="text" name="name" placeholder="שם מלא" required>
+                    <label for="email">אימייל</label>
+                    <input id="email" type="email" name="email" placeholder="אימייל" required>
+                    <button class="cta-primary form-button" type="submit">
+                        להצטרפות מידית
+                        <span aria-hidden="true">→</span>
+                    </button>
                 </form>
-            </div>
-        </section>
-    </main>
+            </section>
 
-    <footer>
-        <div class="container">
-            <div>© 2024 אקדמיית שוק ההון. כל הזכויות שמורות.</div>
-            <div>השקעה בשוק ההון טומנת בחובה סיכונים. מומלץ להיוועץ ביועץ השקעות מוסמך לפני קבלת החלטות.</div>
-            <div><a href="#signup">הצטרפות למחזור הקרוב</a> • <a href="mailto:info@marketacademy.co.il">info@marketacademy.co.il</a></div>
+            <footer>
+                © 2024 אקדמיית שוק ההון · למידה חכמה, תוצאות מדויקות.
+            </footer>
         </div>
-    </footer>
+    </main>
 </body>
 </html>
