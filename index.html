@@ -3,378 +3,758 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FinFamily - ניהול פיננסי חכם למשפחה</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>אקדמיית שוק ההון - קורס דיגיטלי להשקעות</title>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1c6fe8;
+            --primary-dark: #0f4bbd;
+            --accent: #f7b733;
+            --text-dark: #142033;
+            --text-muted: #637089;
+            --surface: #ffffff;
+            --background: #f4f7fb;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Heebo', sans-serif;
+            background: var(--background);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px);
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            box-shadow: 0 12px 32px rgba(20, 32, 51, 0.08);
+        }
+
+        .container {
+            width: min(1100px, 92%);
+            margin: 0 auto;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
+            padding: 18px 0;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo::before {
+            content: "📈";
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            padding: 12px 22px;
+            border-radius: 999px;
+            background: var(--primary);
+            color: #fff;
+            font-weight: 600;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        main {
+            overflow: hidden;
+        }
+
+        .hero {
+            padding: 120px 0 90px;
+            background: linear-gradient(135deg, rgba(28, 111, 232, 0.08) 0%, rgba(247, 183, 51, 0.05) 100%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 56px;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: clamp(2.2rem, 4vw, 3rem);
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .hero-title span {
+            color: var(--primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+        }
+
+        .hero-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .highlight-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 18px;
+            padding: 16px;
+            box-shadow: 0 12px 28px rgba(20, 32, 51, 0.08);
+            border: 1px solid rgba(28, 111, 232, 0.08);
+        }
+
+        .highlight-card strong {
+            display: block;
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+            color: var(--primary);
+        }
+
+        .hero-cta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 600;
+            border-radius: 999px;
+            padding: 14px 28px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 18px 30px rgba(28, 111, 232, 0.26);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            background: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background: rgba(28, 111, 232, 0.12);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(28, 111, 232, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .course-preview {
+            background: var(--surface);
+            border-radius: 28px;
+            padding: 32px;
+            box-shadow: 0 24px 48px rgba(20, 32, 51, 0.12);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-preview::after {
+            content: "";
+            position: absolute;
+            inset: -80px -120px auto auto;
+            width: 260px;
+            height: 260px;
+            background: radial-gradient(circle at center, rgba(28, 111, 232, 0.25) 0%, rgba(28, 111, 232, 0) 70%);
+            pointer-events: none;
+        }
+
+        .course-preview-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .course-tag {
+            background: rgba(247, 183, 51, 0.14);
+            color: #b57400;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .course-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+
+        .stat-card {
+            background: rgba(28, 111, 232, 0.08);
+            border-radius: 16px;
+            padding: 16px;
+        }
+
+        .stat-card span {
+            display: block;
+        }
+
+        .stat-card .stat-value {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+
+        .module-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .module-item {
+            padding: 14px 18px;
+            border-radius: 14px;
+            background: rgba(20, 32, 51, 0.04);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .section {
+            padding: 90px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 3.3vw, 2.6rem);
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            max-width: 580px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            border-radius: 22px;
+            padding: 26px;
+            box-shadow: 0 18px 36px rgba(20, 32, 51, 0.1);
+            border: 1px solid rgba(20, 32, 51, 0.04);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 16px;
+            background: rgba(28, 111, 232, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 18px;
+        }
+
+        .syllabus-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            align-items: start;
+        }
+
+        .syllabus-summary {
+            background: var(--surface);
+            border-radius: 22px;
+            padding: 30px;
+            box-shadow: 0 18px 38px rgba(20, 32, 51, 0.1);
+        }
+
+        .syllabus-summary ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: grid;
+            gap: 12px;
+            color: var(--text-muted);
+        }
+
+        .syllabus-summary li::before {
+            content: "•";
+            color: var(--primary);
+            margin-left: 8px;
+        }
+
+        .syllabus-steps {
+            display: grid;
+            gap: 18px;
+        }
+
+        .step {
+            background: rgba(28, 111, 232, 0.1);
+            border-radius: 18px;
+            padding: 22px;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .testimonials {
+            background: linear-gradient(135deg, rgba(28, 111, 232, 0.12) 0%, rgba(20, 32, 51, 0.08) 100%);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .testimonial {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 22px;
+            padding: 24px;
+            box-shadow: 0 18px 32px rgba(20, 32, 51, 0.12);
+        }
+
+        .testimonial strong {
+            display: block;
+            margin-top: 16px;
+            color: var(--primary);
+        }
+
+        .signup {
+            position: relative;
+            background: linear-gradient(125deg, #1c6fe8 0%, #0f4bbd 100%);
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .signup::before {
+            content: "";
+            position: absolute;
+            inset: auto -120px -140px auto;
+            width: 420px;
+            height: 420px;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 65%);
+            pointer-events: none;
+        }
+
+        .signup-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            align-items: center;
+        }
+
+        .signup h2 {
+            font-size: clamp(2.2rem, 3.5vw, 2.8rem);
+            margin-bottom: 18px;
+        }
+
+        .signup p {
+            margin-bottom: 32px;
+            color: rgba(255, 255, 255, 0.82);
+        }
+
+        .signup-form {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 24px 48px rgba(13, 27, 44, 0.25);
+            backdrop-filter: blur(6px);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        input {
+            border: none;
+            border-radius: 14px;
+            padding: 14px 16px;
+            font-size: 1rem;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.92);
+            color: var(--text-dark);
+        }
+
+        input:focus {
+            outline: 2px solid rgba(255, 255, 255, 0.6);
+            outline-offset: 2px;
+        }
+
+        .signup button {
+            width: 100%;
+            border-radius: 14px;
+            border: none;
+            padding: 16px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            background: var(--accent);
+            color: #142033;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .signup button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 28px rgba(20, 32, 51, 0.25);
+        }
+
+        footer {
+            background: #0e1726;
+            color: rgba(255, 255, 255, 0.75);
+            padding: 36px 0;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        footer a {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        @media (max-width: 980px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                position: static;
+            }
+        }
+
+        @media (max-width: 780px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-container {
+                padding: 16px 0;
+            }
+
+            .section {
+                padding: 72px 0;
+            }
+        }
+
+        @media (max-width: 540px) {
+            .hero {
+                padding: 90px 0 60px;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .course-preview {
+                padding: 24px;
+            }
+
+            .signup-content {
+                gap: 24px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="nav">
-            <div class="nav-container">
-                <div class="logo">
-                    <i class="fas fa-chart-line"></i>
-                    <span>FinFamily</span>
-                </div>
-                <ul class="nav-menu">
-                    <li><a href="#home">בית</a></li>
-                    <li><a href="#features">תכונות</a></li>
-                    <li><a href="#calculator">מחשבונים</a></li>
-                    <li><a href="#pricing">מחירים</a></li>
-                    <li><a href="#contact">צור קשר</a></li>
-                </ul>
-                <div class="nav-buttons">
-                    <button class="btn btn-secondary">התחבר</button>
-                    <button class="btn btn-primary">התחל חינם</button>
-                </div>
-            </div>
-        </nav>
+    <header>
+        <div class="container nav-container">
+            <div class="logo">אקדמיית שוק ההון</div>
+            <nav class="nav-links">
+                <a href="#benefits">למה הקורס</a>
+                <a href="#syllabus">מה נלמד</a>
+                <a href="#testimonials">בוגרים ממליצים</a>
+                <a href="#signup">הרשמה</a>
+            </nav>
+            <a class="nav-cta" href="#signup">להירשם למחזור הקרוב</a>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    ניהול פיננסי חכם
-                    <span class="highlight">למשפחה שלך</span>
-                </h1>
-                <p class="hero-description">
-                    השג שליטה מלאה על הכספים שלך עם כלי ניהול מתקדמים, מעקב תזרים מזומנים, 
-                    ניהול נכסים והתחייבויות, ומחשבונים פיננסיים חכמים
-                </p>
-                <div class="hero-buttons">
-                    <button class="btn btn-primary btn-large">
-                        <i class="fas fa-rocket"></i>
-                        התחל עכשיו - חינם
-                    </button>
-                    <button class="btn btn-outline btn-large">
-                        <i class="fas fa-play"></i>
-                        צפה בסרטון הדגמה
-                    </button>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">50,000+</span>
-                        <span class="stat-label">משפחות</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">₪2.5M</span>
-                        <span class="stat-label">חסכונות</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">4.8</span>
-                        <span class="stat-label">דירוג</span>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="app-mockup">
-                    <div class="mockup-screen">
-                        <div class="mockup-header">
-                            <div class="mockup-dots">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </div>
-                        <div class="mockup-content">
-                            <div class="dashboard-preview">
-                                <div class="chart-container">
-                                    <canvas id="previewChart"></canvas>
-                                </div>
-                                <div class="stats-grid">
-                                    <div class="stat-card">
-                                        <i class="fas fa-wallet"></i>
-                                        <span>תזרים מזומנים</span>
-                                    </div>
-                                    <div class="stat-card">
-                                        <i class="fas fa-piggy-bank"></i>
-                                        <span>חסכונות</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <main>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div>
+                    <h1 class="hero-title">קורס דיגיטלי מקיף שיקח אותך מ<span>מתעניין למשקיע בטוח</span></h1>
+                    <p class="hero-subtitle">גלה כיצד לבנות תיק השקעות מניב, לזהות הזדמנויות בשוק ההון ולנהל סיכונים בשיטה מסודרת – בקצב שלך ומכל מקום.</p>
 
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <div class="section-header">
-                <h2>כל מה שצריך לניהול פיננסי מושלם</h2>
-                <p>כלים מתקדמים שיעזרו לך לקחת שליטה על הכספים שלך</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-pie"></i>
+                    <div class="hero-highlights">
+                        <div class="highlight-card">
+                            <strong>60+ שיעורים</strong>
+                            תוכן וידאו מעמיק, תרגולים ודוגמאות מהשוק האמיתי
+                        </div>
+                        <div class="highlight-card">
+                            <strong>ליווי מקצועי</strong>
+                            מפגשי Q&A שבועיים וקבוצת תלמידים סגורה לתמיכה מלאה
+                        </div>
+                        <div class="highlight-card">
+                            <strong>תוצאות מוכחות</strong>
+                            מעל 3,500 בוגרים שכבר מנהלים השקעות בביטחון ובשיטתיות
+                        </div>
                     </div>
-                    <h3>ניהול נכסים והתחייבויות</h3>
-                    <p>מעקב מלא אחר כל הנכסים והחובות שלך עם דשבורד ויזואלי ברור</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-money-bill-wave"></i>
-                    </div>
-                    <h3>תזרים מזומנים</h3>
-                    <p>מעקב יומי, שבועי וחודשי אחר הכנסות והוצאות עם תחזיות חכמות</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-piggy-bank"></i>
-                    </div>
-                    <h3>הקצאת חסכון</h3>
-                    <p>תכנון חכם של החסכונות עם המלצות מותאמות אישית</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-calculator"></i>
-                    </div>
-                    <h3>מחשבונים פיננסיים</h3>
-                    <p>ריבית דריבית, משכנתא, השקעות ועוד מחשבונים מתקדמים</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bell"></i>
-                    </div>
-                    <h3>התראות חכמות</h3>
-                    <p>קבל התראות על תשלומים, יעדי חסכון וזיהוי חריגות</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>אבטחה מתקדמת</h3>
-                    <p>הנתונים שלך מוגנים עם הצפנה מתקדמת וגיבוי אוטומטי</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Calculator Section -->
-    <section id="calculator" class="calculator">
-        <div class="container">
-            <div class="section-header">
-                <h2>מחשבונים פיננסיים</h2>
-                <p>כלים לחישובים מדויקים לתכנון הפיננסי שלך</p>
-            </div>
-            <div class="calculator-tabs">
-                <button class="tab-btn active" data-tab="compound">ריבית דריבית</button>
-                <button class="tab-btn" data-tab="mortgage">משכנתא</button>
-                <button class="tab-btn" data-tab="investment">השקעות</button>
-            </div>
-            <div class="calculator-content">
-                <!-- Compound Interest Calculator -->
-                <div class="calc-panel active" id="compound">
-                    <div class="calc-form">
-                        <div class="form-group">
-                            <label>סכום התחלתי</label>
-                            <input type="number" id="principal" placeholder="10000" min="0">
-                        </div>
-                        <div class="form-group">
-                            <label>תשלום חודשי</label>
-                            <input type="number" id="monthly" placeholder="1000" min="0">
-                        </div>
-                        <div class="form-group">
-                            <label>ריבית שנתית (%)</label>
-                            <input type="number" id="rate" placeholder="5" min="0" max="100" step="0.1">
-                        </div>
-                        <div class="form-group">
-                            <label>תקופה (שנים)</label>
-                            <input type="number" id="years" placeholder="10" min="1" max="50">
-                        </div>
-                        <button class="btn btn-primary" onclick="calculateCompound()">חשב</button>
+                    <div class="hero-cta">
+                        <a class="btn btn-primary" href="#signup">אני רוצה להצטרף</a>
+                        <a class="btn btn-secondary" href="#syllabus">צפה בתוכנית הקורס</a>
                     </div>
-                    <div class="calc-result">
-                        <div class="result-card">
-                            <h3>תוצאות החישוב</h3>
-                            <div class="result-item">
-                                <span>סכום סופי:</span>
-                                <span id="finalAmount">₪0</span>
-                            </div>
-                            <div class="result-item">
-                                <span>סך הכל הפקדות:</span>
-                                <span id="totalDeposits">₪0</span>
-                            </div>
-                            <div class="result-item">
-                                <span>סך הכל ריבית:</span>
-                                <span id="totalInterest">₪0</span>
-                            </div>
+                </div>
+
+                <div class="course-preview">
+                    <div class="course-preview-header">
+                        <div>
+                            <h3 style="margin:0; font-size:1.3rem;">תצוגה מקדימה של הקורס</h3>
+                            <small style="color:var(--text-muted);">גלה מה מחכה לך כבר בשיעורים הראשונים</small>
                         </div>
-                        <div class="chart-container">
-                            <canvas id="compoundChart"></canvas>
+                        <span class="course-tag">התחייבות להחזר כספי</span>
+                    </div>
+
+                    <div class="course-stats">
+                        <div class="stat-card">
+                            <span class="stat-value">12</span>
+                            <span>מודולים מעשיים</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-value">24/7</span>
+                            <span>גישה מלאה לתכנים</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-value">6</span>
+                            <span>תבניות להשקעה</span>
+                        </div>
+                    </div>
+
+                    <div class="module-list">
+                        <div class="module-item">
+                            יסודות שוק ההון
+                            <span>✔</span>
+                        </div>
+                        <div class="module-item">
+                            ניתוח טכני ומגמות
+                            <span>✔</span>
+                        </div>
+                        <div class="module-item">
+                            בניית תיק השקעות מגוון
+                            <span>✔</span>
+                        </div>
+                        <div class="module-item">
+                            ניהול סיכונים ותכנון מס
+                            <span>✔</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing">
-        <div class="container">
-            <div class="section-header">
-                <h2>תוכניות מחיר</h2>
-                <p>בחר את התוכנית המתאימה למשפחה שלך</p>
+        <section id="benefits" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>למה לבחור בקורס הדיגיטלי של אקדמיית שוק ההון?</h2>
+                    <p>הקורס נבנה עבור משקיעים מתחילים ומנוסים כאחד ומעניק כלים פרקטיים ליצירת החלטות נכונות בשוק תנודתי.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>שיטה בדוקה</h3>
+                        <p>מסלול לימוד מדורג שמתחיל מהבסיס ומלווה אותך עד ליישום עצמי עם מדדים ברורים להתקדמות.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🧠</div>
+                        <h3>למידה חווייתית</h3>
+                        <p>תרגולים אינטראקטיביים, סימולציות מסחר ומקרי בוחן אמיתיים שיחזקו את הביטחון שלך.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤝</div>
+                        <h3>קהילה תומכת</h3>
+                        <p>גישה לקבוצת בוגרים פעילה, פידבק אישי ממנטורים ומענה על כל שאלה בזמן אמת.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🚀</div>
+                        <h3>מוכנים לפעולה</h3>
+                        <p>שילוב של כלים, תבניות וקבצי עבודה שיעזרו לך ליישם כבר במהלך הקורס ולראות תוצאות מהירות.</p>
+                    </div>
+                </div>
             </div>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>חינמי</h3>
-                        <div class="price">
-                            <span class="currency">₪</span>
-                            <span class="amount">0</span>
-                            <span class="period">/חודש</span>
+        </section>
+
+        <section id="syllabus" class="section" style="padding-top: 0;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>מה מחכה לך בתוכנית הלימוד</h2>
+                    <p>12 מודולים מהודקים ומקצועיים שיעשו סדר בעולם ההשקעות ויתנו לך מסלול ברור להצלחה.</p>
+                </div>
+                <div class="syllabus-wrapper">
+                    <div class="syllabus-summary">
+                        <h3 style="margin-top:0;">תוצאות שתשיג:</h3>
+                        <ul>
+                            <li>בניית אסטרטגיה אישית להשקעה לטווח קצר וארוך</li>
+                            <li>הבנת דוחות כספיים וניתוח חברות ציבוריות</li>
+                            <li>שימוש בכלי ניתוח טכני לקבלת החלטות חכמות</li>
+                            <li>ניהול סיכונים ויצירת תכנית יציאה מבוססת נתונים</li>
+                        </ul>
+                    </div>
+                    <div class="syllabus-steps">
+                        <div class="step">
+                            <div class="step-number">01</div>
+                            <h4>היכרות עם השוק וכללי המשחק</h4>
+                            <p>הבנת המונחים המרכזיים, זירות המסחר והגופים הרגולטוריים. שיטות לבחירת ברוקר ולהתנהלות נכונה כמשקיע.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">02</div>
+                            <h4>ניתוח טכני ומיפוי מגמות</h4>
+                            <p>קריאת גרפים, זיהוי תבניות, שימוש באינדיקטורים מתקדמים והגדרת נקודות כניסה ויציאה.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">03</div>
+                            <h4>כלים לניהול תיק השקעות</h4>
+                            <p>אסטרטגיות פיזור, ניהול סיכונים, התאמה לפרופיל משקיע והגנה מפני ירידות חדות.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">04</div>
+                            <h4>מיסוי, פסיכולוגיה ומוכנות לשטח</h4>
+                            <p>התנהלות מול רשויות המס, ניהול רגשי של המסחר והכנה לתוכנית פעולה בתנאי שוק משתנים.</p>
                         </div>
                     </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> עד 2 חשבונות בנק</li>
-                        <li><i class="fas fa-check"></i> מעקב בסיסי</li>
-                        <li><i class="fas fa-check"></i> מחשבונים בסיסיים</li>
-                        <li><i class="fas fa-check"></i> תמיכה בדוא"ל</li>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="section testimonials">
+            <div class="container">
+                <div class="section-header">
+                    <h2>מה אומרים הבוגרים שלנו?</h2>
+                    <p>אלפי תלמידים כבר השקיעו בעצמם ובנו חוסן פיננסי. הנה כמה מההצלחות שלהם.</p>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial">
+                        "הקורס נתן לי ביטחון לבצע פעולות ראשונות בבורסה. היום אני מנהלת תיק השקעות משפחתי ויודעת בדיוק למה אני בוחרת כל נכס."
+                        <strong>עדי, בוגרת מחזור 14</strong>
+                    </div>
+                    <div class="testimonial">
+                        "מבנה השיעורים והתרגולים הפכו את התהליך לברור ופשוט. התמיכה במנטורים עזרה לי לחדד את האסטרטגיה האישית שלי."
+                        <strong>דניאל, מנהל מוצר</strong>
+                    </div>
+                    <div class="testimonial">
+                        "לאחר חצי שנה של יישום האסטרטגיות שלמדתי הצלחתי להגדיל את התיק שלי ב-18% ולשמור על שקט נפשי גם בתקופות תנודתיות."
+                        <strong>אבירם, יזם</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="signup" class="section signup">
+            <div class="container signup-content">
+                <div>
+                    <h2>הצטרפו למחזור הקרוב וקבלו גישה מלאה כבר היום</h2>
+                    <p>השאירו פרטים ונציג אקדמיית שוק ההון יחזור אליכם עם כל המידע על הרשמה, מלגות והטבות בלעדיות למצטרפים החדשים.</p>
+                    <ul style="padding:0; margin:0; list-style:none; display:grid; gap:12px; font-weight:500;">
+                        <li style="display:flex; align-items:center; gap:10px;"><span style="display:inline-flex; width:26px; height:26px; border-radius:50%; background:rgba(255,255,255,0.2); align-items:center; justify-content:center; font-weight:700;">✓</span>גישה לכל השיעורים ולחומרי העזר ללא הגבלת זמן</li>
+                        <li style="display:flex; align-items:center; gap:10px;"><span style="display:inline-flex; width:26px; height:26px; border-radius:50%; background:rgba(255,255,255,0.2); align-items:center; justify-content:center; font-weight:700;">✓</span>הצטרפות לקהילה דיגיטלית עם תמיכה מקצועית</li>
+                        <li style="display:flex; align-items:center; gap:10px;"><span style="display:inline-flex; width:26px; height:26px; border-radius:50%; background:rgba(255,255,255,0.2); align-items:center; justify-content:center; font-weight:700;">✓</span>בונוס: קורס מיני על בניית הכנסה פסיבית משווקים פיננסיים</li>
                     </ul>
-                    <button class="btn btn-outline">התחל חינם</button>
                 </div>
-                <div class="pricing-card featured">
-                    <div class="pricing-badge">פופולרי</div>
-                    <div class="pricing-header">
-                        <h3>משפחה</h3>
-                        <div class="price">
-                            <span class="currency">₪</span>
-                            <span class="amount">29</span>
-                            <span class="period">/חודש</span>
-                        </div>
-                    </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> חשבונות בנק ללא הגבלה</li>
-                        <li><i class="fas fa-check"></i> כל התכונות המתקדמות</li>
-                        <li><i class="fas fa-check"></i> מחשבונים מתקדמים</li>
-                        <li><i class="fas fa-check"></i> התראות חכמות</li>
-                        <li><i class="fas fa-check"></i> תמיכה טלפונית</li>
-                        <li><i class="fas fa-check"></i> גיבוי אוטומטי</li>
-                    </ul>
-                    <button class="btn btn-primary">התחל עכשיו</button>
-                </div>
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>מקצועי</h3>
-                        <div class="price">
-                            <span class="currency">₪</span>
-                            <span class="amount">59</span>
-                            <span class="period">/חודש</span>
-                        </div>
-                    </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> כל התכונות של משפחה</li>
-                        <li><i class="fas fa-check"></i> ייעוץ פיננסי אישי</li>
-                        <li><i class="fas fa-check"></i> דוחות מתקדמים</li>
-                        <li><i class="fas fa-check"></i> API גישה</li>
-                        <li><i class="fas fa-check"></i> תמיכה VIP</li>
-                    </ul>
-                    <button class="btn btn-outline">צור קשר</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h2>צור קשר</h2>
-                    <p>יש לך שאלות? אנחנו כאן לעזור!</p>
-                    <div class="contact-methods">
-                        <div class="contact-method">
-                            <i class="fas fa-envelope"></i>
-                            <span>support@finfamily.co.il</span>
-                        </div>
-                        <div class="contact-method">
-                            <i class="fas fa-phone"></i>
-                            <span>03-1234567</span>
-                        </div>
-                        <div class="contact-method">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>תל אביב, ישראל</span>
-                        </div>
-                    </div>
-                </div>
-                <form class="contact-form">
+                <form class="signup-form">
                     <div class="form-group">
-                        <input type="text" placeholder="שם מלא" required>
+                        <label for="name">שם מלא</label>
+                        <input id="name" type="text" name="name" placeholder="הקלד/י את שמך" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" placeholder="דוא"ל" required>
+                        <label for="email">כתובת אימייל</label>
+                        <input id="email" type="email" name="email" placeholder="name@example.com" required>
                     </div>
-                    <div class="form-group">
-                        <input type="tel" placeholder="טלפון">
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="הודעה" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">שלח הודעה</button>
+                    <button type="submit">שלחו לי פרטים נוספים</button>
                 </form>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="logo">
-                        <i class="fas fa-chart-line"></i>
-                        <span>FinFamily</span>
-                    </div>
-                    <p>ניהול פיננסי חכם למשפחה המודרנית</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4>מוצר</h4>
-                    <ul>
-                        <li><a href="#features">תכונות</a></li>
-                        <li><a href="#calculator">מחשבונים</a></li>
-                        <li><a href="#pricing">מחירים</a></li>
-                        <li><a href="#">ביטחון</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>תמיכה</h4>
-                    <ul>
-                        <li><a href="#">מרכז עזרה</a></li>
-                        <li><a href="#">מדריכים</a></li>
-                        <li><a href="#contact">צור קשר</a></li>
-                        <li><a href="#">שאלות נפוצות</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>חברה</h4>
-                    <ul>
-                        <li><a href="#">אודות</a></li>
-                        <li><a href="#">קריירה</a></li>
-                        <li><a href="#">בלוג</a></li>
-                        <li><a href="#">תנאי שימוש</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 FinFamily. כל הזכויות שמורות.</p>
-            </div>
+            <div>© 2024 אקדמיית שוק ההון. כל הזכויות שמורות.</div>
+            <div>השקעה בשוק ההון טומנת בחובה סיכונים. מומלץ להיוועץ ביועץ השקעות מוסמך לפני קבלת החלטות.</div>
+            <div><a href="#signup">הצטרפות למחזור הקרוב</a> • <a href="mailto:info@marketacademy.co.il">info@marketacademy.co.il</a></div>
         </div>
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="script.js"></script>
 </body>
 </html>
