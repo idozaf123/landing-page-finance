@@ -3,378 +3,313 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FinFamily - ניהול פיננסי חכם למשפחה</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>קורס דיגיטלי פרימיום להשקעות</title>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0b1f3a;
+            --primary-soft: #1f4b99;
+            --light: #f3f6fb;
+            --muted: #6f7d95;
+            --border: rgba(11, 31, 58, 0.1);
+            --surface: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Heebo', sans-serif;
+            background: var(--light);
+            color: var(--primary);
+            display: flex;
+            justify-content: center;
+            padding: 48px 16px 64px;
+        }
+
+        main {
+            width: min(880px, 100%);
+            background: var(--surface);
+            border-radius: 32px;
+            padding: clamp(40px, 6vw, 72px);
+            box-shadow: 0 40px 80px rgba(11, 31, 58, 0.08);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        main::before,
+        main::after {
+            content: "";
+            position: absolute;
+            border-radius: 999px;
+            background: linear-gradient(135deg, rgba(31, 75, 153, 0.15), rgba(11, 31, 58, 0.05));
+            filter: blur(0.5px);
+            z-index: 0;
+        }
+
+        main::before {
+            width: 280px;
+            height: 280px;
+            top: -120px;
+            inset-inline-start: -120px;
+        }
+
+        main::after {
+            width: 220px;
+            height: 220px;
+            bottom: -100px;
+            inset-inline-end: -80px;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            gap: clamp(32px, 4vw, 48px);
+        }
+
+        .brand {
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--primary-soft);
+            margin: 0 auto;
+            padding: 8px 20px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brand::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary-soft);
+        }
+
+        h1 {
+            font-size: clamp(2.1rem, 5vw, 3.1rem);
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        .lead {
+            font-size: clamp(1.05rem, 2.6vw, 1.3rem);
+            color: var(--muted);
+            margin: 0 auto;
+            max-width: 28rem;
+        }
+
+        .cta-primary {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--primary-soft), #0b2f64);
+            color: #fff;
+            font-size: 1.05rem;
+            font-weight: 600;
+            padding: 18px 48px;
+            border-radius: 999px;
+            box-shadow: 0 20px 30px rgba(31, 75, 153, 0.25);
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 26px 40px rgba(11, 31, 58, 0.25);
+        }
+
+        .cta-primary span {
+            font-size: 1.2rem;
+        }
+
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to left, transparent, var(--border), transparent);
+        }
+
+        .features {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        }
+
+        .feature {
+            background: rgba(243, 246, 251, 0.5);
+            border: 1px solid rgba(11, 31, 58, 0.07);
+            border-radius: 24px;
+            padding: 24px;
+            display: grid;
+            gap: 12px;
+            place-items: center;
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(31, 75, 153, 0.1);
+            display: grid;
+            place-items: center;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin: 0;
+        }
+
+        .feature-text {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .form-card {
+            background: rgba(243, 246, 251, 0.65);
+            border-radius: 28px;
+            padding: clamp(28px, 4vw, 40px);
+            border: 1px solid rgba(11, 31, 58, 0.08);
+            display: grid;
+            gap: 24px;
+        }
+
+        .form-card h2 {
+            margin: 0;
+            font-size: 1.6rem;
+        }
+
+        form {
+            display: grid;
+            gap: 18px;
+        }
+
+        label {
+            display: none;
+        }
+
+        input {
+            width: 100%;
+            padding: 16px 18px;
+            border-radius: 16px;
+            border: 1px solid rgba(11, 31, 58, 0.18);
+            background: #fff;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary-soft);
+            box-shadow: 0 0 0 4px rgba(31, 75, 153, 0.15);
+        }
+
+        .form-button {
+            border: none;
+            cursor: pointer;
+        }
+
+        footer {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 32px 12px 48px;
+            }
+
+            main {
+                border-radius: 24px;
+            }
+
+            .cta-primary {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="nav">
-            <div class="nav-container">
-                <div class="logo">
-                    <i class="fas fa-chart-line"></i>
-                    <span>FinFamily</span>
-                </div>
-                <ul class="nav-menu">
-                    <li><a href="#home">בית</a></li>
-                    <li><a href="#features">תכונות</a></li>
-                    <li><a href="#calculator">מחשבונים</a></li>
-                    <li><a href="#pricing">מחירים</a></li>
-                    <li><a href="#contact">צור קשר</a></li>
-                </ul>
-                <div class="nav-buttons">
-                    <button class="btn btn-secondary">התחבר</button>
-                    <button class="btn btn-primary">התחל חינם</button>
-                </div>
+    <main>
+        <div class="content">
+            <div class="hero">
+                <span class="brand">אקדמיית שוק ההון</span>
+                <h1>קורס דיגיטלי פרימיום להשקעות חכמות</h1>
+                <p class="lead">גלו את המסלול המהיר להצלחה פיננסית עם תוכנית מקיפה, הדרכות חיות וכלים מעשיים שתוכלו ליישם מיידית.</p>
+                <a class="cta-primary" href="#signup">
+                    להבטיח מקום בקורס
+                    <span aria-hidden="true">→</span>
+                </a>
             </div>
-        </nav>
-    </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    ניהול פיננסי חכם
-                    <span class="highlight">למשפחה שלך</span>
-                </h1>
-                <p class="hero-description">
-                    השג שליטה מלאה על הכספים שלך עם כלי ניהול מתקדמים, מעקב תזרים מזומנים, 
-                    ניהול נכסים והתחייבויות, ומחשבונים פיננסיים חכמים
-                </p>
-                <div class="hero-buttons">
-                    <button class="btn btn-primary btn-large">
-                        <i class="fas fa-rocket"></i>
-                        התחל עכשיו - חינם
+            <div class="divider" aria-hidden="true"></div>
+
+            <section class="features" aria-label="מאפייני הקורס">
+                <article class="feature">
+                    <div class="feature-icon" aria-hidden="true">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="14" cy="14" r="12" stroke="#1f4b99" stroke-width="1.5"/>
+                            <path d="M14 7V21" stroke="#1f4b99" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M7 14H21" stroke="#1f4b99" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">ידע מעשי ומדויק</h3>
+                    <p class="feature-text">יחידות קצרות וממוקדות שמובילות לפעולה בשוק ההון.</p>
+                </article>
+                <article class="feature">
+                    <div class="feature-icon" aria-hidden="true">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="6" y="5" width="16" height="18" rx="3" stroke="#1f4b99" stroke-width="1.5"/>
+                            <path d="M10 4V8" stroke="#1f4b99" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M18 4V8" stroke="#1f4b99" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M10 14H18" stroke="#1f4b99" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">קצב גמיש</h3>
+                    <p class="feature-text">תוכן זמין 24/7 עם עדכונים שוטפים והתאמה לזמן שלכם.</p>
+                </article>
+                <article class="feature">
+                    <div class="feature-icon" aria-hidden="true">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23 10C23 16 14 23 14 23C14 23 5 16 5 10C5 7.23858 7.23858 5 10 5C11.8485 5 13.4541 5.96277 14 7.37565C14.5459 5.96277 16.1515 5 18 5C20.7614 5 23 7.23858 23 10Z" stroke="#1f4b99" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">קהילה ותמיכה</h3>
+                    <p class="feature-text">מפגשי מנטורים שבועיים וקבוצת למידה אינטימית.</p>
+                </article>
+            </section>
+
+            <div class="divider" aria-hidden="true"></div>
+
+            <section id="signup" class="form-card" aria-label="טופס הרשמה">
+                <h2>השאירו פרטים ונחזור אליכם עם כל הפרטים</h2>
+                <form>
+                    <label for="name">שם מלא</label>
+                    <input id="name" type="text" name="name" placeholder="שם מלא" required>
+                    <label for="email">אימייל</label>
+                    <input id="email" type="email" name="email" placeholder="אימייל" required>
+                    <button class="cta-primary form-button" type="submit">
+                        להצטרפות מידית
+                        <span aria-hidden="true">→</span>
                     </button>
-                    <button class="btn btn-outline btn-large">
-                        <i class="fas fa-play"></i>
-                        צפה בסרטון הדגמה
-                    </button>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">50,000+</span>
-                        <span class="stat-label">משפחות</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">₪2.5M</span>
-                        <span class="stat-label">חסכונות</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">4.8</span>
-                        <span class="stat-label">דירוג</span>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="app-mockup">
-                    <div class="mockup-screen">
-                        <div class="mockup-header">
-                            <div class="mockup-dots">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </div>
-                        <div class="mockup-content">
-                            <div class="dashboard-preview">
-                                <div class="chart-container">
-                                    <canvas id="previewChart"></canvas>
-                                </div>
-                                <div class="stats-grid">
-                                    <div class="stat-card">
-                                        <i class="fas fa-wallet"></i>
-                                        <span>תזרים מזומנים</span>
-                                    </div>
-                                    <div class="stat-card">
-                                        <i class="fas fa-piggy-bank"></i>
-                                        <span>חסכונות</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <div class="section-header">
-                <h2>כל מה שצריך לניהול פיננסי מושלם</h2>
-                <p>כלים מתקדמים שיעזרו לך לקחת שליטה על הכספים שלך</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                    <h3>ניהול נכסים והתחייבויות</h3>
-                    <p>מעקב מלא אחר כל הנכסים והחובות שלך עם דשבורד ויזואלי ברור</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-money-bill-wave"></i>
-                    </div>
-                    <h3>תזרים מזומנים</h3>
-                    <p>מעקב יומי, שבועי וחודשי אחר הכנסות והוצאות עם תחזיות חכמות</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-piggy-bank"></i>
-                    </div>
-                    <h3>הקצאת חסכון</h3>
-                    <p>תכנון חכם של החסכונות עם המלצות מותאמות אישית</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-calculator"></i>
-                    </div>
-                    <h3>מחשבונים פיננסיים</h3>
-                    <p>ריבית דריבית, משכנתא, השקעות ועוד מחשבונים מתקדמים</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bell"></i>
-                    </div>
-                    <h3>התראות חכמות</h3>
-                    <p>קבל התראות על תשלומים, יעדי חסכון וזיהוי חריגות</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>אבטחה מתקדמת</h3>
-                    <p>הנתונים שלך מוגנים עם הצפנה מתקדמת וגיבוי אוטומטי</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Calculator Section -->
-    <section id="calculator" class="calculator">
-        <div class="container">
-            <div class="section-header">
-                <h2>מחשבונים פיננסיים</h2>
-                <p>כלים לחישובים מדויקים לתכנון הפיננסי שלך</p>
-            </div>
-            <div class="calculator-tabs">
-                <button class="tab-btn active" data-tab="compound">ריבית דריבית</button>
-                <button class="tab-btn" data-tab="mortgage">משכנתא</button>
-                <button class="tab-btn" data-tab="investment">השקעות</button>
-            </div>
-            <div class="calculator-content">
-                <!-- Compound Interest Calculator -->
-                <div class="calc-panel active" id="compound">
-                    <div class="calc-form">
-                        <div class="form-group">
-                            <label>סכום התחלתי</label>
-                            <input type="number" id="principal" placeholder="10000" min="0">
-                        </div>
-                        <div class="form-group">
-                            <label>תשלום חודשי</label>
-                            <input type="number" id="monthly" placeholder="1000" min="0">
-                        </div>
-                        <div class="form-group">
-                            <label>ריבית שנתית (%)</label>
-                            <input type="number" id="rate" placeholder="5" min="0" max="100" step="0.1">
-                        </div>
-                        <div class="form-group">
-                            <label>תקופה (שנים)</label>
-                            <input type="number" id="years" placeholder="10" min="1" max="50">
-                        </div>
-                        <button class="btn btn-primary" onclick="calculateCompound()">חשב</button>
-                    </div>
-                    <div class="calc-result">
-                        <div class="result-card">
-                            <h3>תוצאות החישוב</h3>
-                            <div class="result-item">
-                                <span>סכום סופי:</span>
-                                <span id="finalAmount">₪0</span>
-                            </div>
-                            <div class="result-item">
-                                <span>סך הכל הפקדות:</span>
-                                <span id="totalDeposits">₪0</span>
-                            </div>
-                            <div class="result-item">
-                                <span>סך הכל ריבית:</span>
-                                <span id="totalInterest">₪0</span>
-                            </div>
-                        </div>
-                        <div class="chart-container">
-                            <canvas id="compoundChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing">
-        <div class="container">
-            <div class="section-header">
-                <h2>תוכניות מחיר</h2>
-                <p>בחר את התוכנית המתאימה למשפחה שלך</p>
-            </div>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>חינמי</h3>
-                        <div class="price">
-                            <span class="currency">₪</span>
-                            <span class="amount">0</span>
-                            <span class="period">/חודש</span>
-                        </div>
-                    </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> עד 2 חשבונות בנק</li>
-                        <li><i class="fas fa-check"></i> מעקב בסיסי</li>
-                        <li><i class="fas fa-check"></i> מחשבונים בסיסיים</li>
-                        <li><i class="fas fa-check"></i> תמיכה בדוא"ל</li>
-                    </ul>
-                    <button class="btn btn-outline">התחל חינם</button>
-                </div>
-                <div class="pricing-card featured">
-                    <div class="pricing-badge">פופולרי</div>
-                    <div class="pricing-header">
-                        <h3>משפחה</h3>
-                        <div class="price">
-                            <span class="currency">₪</span>
-                            <span class="amount">29</span>
-                            <span class="period">/חודש</span>
-                        </div>
-                    </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> חשבונות בנק ללא הגבלה</li>
-                        <li><i class="fas fa-check"></i> כל התכונות המתקדמות</li>
-                        <li><i class="fas fa-check"></i> מחשבונים מתקדמים</li>
-                        <li><i class="fas fa-check"></i> התראות חכמות</li>
-                        <li><i class="fas fa-check"></i> תמיכה טלפונית</li>
-                        <li><i class="fas fa-check"></i> גיבוי אוטומטי</li>
-                    </ul>
-                    <button class="btn btn-primary">התחל עכשיו</button>
-                </div>
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>מקצועי</h3>
-                        <div class="price">
-                            <span class="currency">₪</span>
-                            <span class="amount">59</span>
-                            <span class="period">/חודש</span>
-                        </div>
-                    </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> כל התכונות של משפחה</li>
-                        <li><i class="fas fa-check"></i> ייעוץ פיננסי אישי</li>
-                        <li><i class="fas fa-check"></i> דוחות מתקדמים</li>
-                        <li><i class="fas fa-check"></i> API גישה</li>
-                        <li><i class="fas fa-check"></i> תמיכה VIP</li>
-                    </ul>
-                    <button class="btn btn-outline">צור קשר</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h2>צור קשר</h2>
-                    <p>יש לך שאלות? אנחנו כאן לעזור!</p>
-                    <div class="contact-methods">
-                        <div class="contact-method">
-                            <i class="fas fa-envelope"></i>
-                            <span>support@finfamily.co.il</span>
-                        </div>
-                        <div class="contact-method">
-                            <i class="fas fa-phone"></i>
-                            <span>03-1234567</span>
-                        </div>
-                        <div class="contact-method">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>תל אביב, ישראל</span>
-                        </div>
-                    </div>
-                </div>
-                <form class="contact-form">
-                    <div class="form-group">
-                        <input type="text" placeholder="שם מלא" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="דוא"ל" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="tel" placeholder="טלפון">
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="הודעה" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">שלח הודעה</button>
                 </form>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="logo">
-                        <i class="fas fa-chart-line"></i>
-                        <span>FinFamily</span>
-                    </div>
-                    <p>ניהול פיננסי חכם למשפחה המודרנית</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4>מוצר</h4>
-                    <ul>
-                        <li><a href="#features">תכונות</a></li>
-                        <li><a href="#calculator">מחשבונים</a></li>
-                        <li><a href="#pricing">מחירים</a></li>
-                        <li><a href="#">ביטחון</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>תמיכה</h4>
-                    <ul>
-                        <li><a href="#">מרכז עזרה</a></li>
-                        <li><a href="#">מדריכים</a></li>
-                        <li><a href="#contact">צור קשר</a></li>
-                        <li><a href="#">שאלות נפוצות</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>חברה</h4>
-                    <ul>
-                        <li><a href="#">אודות</a></li>
-                        <li><a href="#">קריירה</a></li>
-                        <li><a href="#">בלוג</a></li>
-                        <li><a href="#">תנאי שימוש</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 FinFamily. כל הזכויות שמורות.</p>
-            </div>
+            <footer>
+                © 2024 אקדמיית שוק ההון · למידה חכמה, תוצאות מדויקות.
+            </footer>
         </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="script.js"></script>
+    </main>
 </body>
 </html>
